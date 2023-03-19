@@ -5,12 +5,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const oAuth2Client = new google.auth.OAuth2(
-  process.env.VITE_CLIENT_ID,
-  process.env.VITE_CLIENT_SECRET,
-  process.env.VITE_REDIRECT_URI
+  import.meta.env.VITE_CLIENT_ID,
+  import.meta.env.VITE_CLIENT_SECRET,
+  import.meta.env.VITE_REDIRECT_URI
 );
 oAuth2Client.setCredentials({
-  refresh_token: process.env.VITE_REFRESH_TOKEN,
+  refresh_token: import.meta.env.VITE_REFRESH_TOKEN,
 });
 
 
@@ -21,10 +21,10 @@ const Email = async (options) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: process.env.VITE_USER,
-        clientId: process.env.VITE_CLIENT_ID,
-        clientSecret: process.env.VITE_CLIENT_SECRET,
-        refreshToken: process.env.VITE_REFRESH_TOKEN,
+        user: import.meta.env.VITE_USER,
+        clientId: import.meta.env.VITE_CLIENT_ID,
+        clientSecret: import.meta.env.VITE_CLIENT_SECRET,
+        refreshToken: import.meta.env.VITE_REFRESH_TOKEN,
         accessToken: accessToken,
       },
     });
@@ -39,7 +39,7 @@ const Email = async (options) => {
 // send email
 const EmailSender = ({ fullName, email, message }) => {
   const options = {
-    from: `LumenPay.Finance <${process.env.VITE_USER}>`,
+    from: `LumenPay.Finance <${import.meta.env.VITE_USER}>`,
     to: "kimathidennis38@gmail.com",
     subject: "Message From LumenPay",
     html: `
